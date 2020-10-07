@@ -4,3 +4,10 @@ services:
 script:
     - docker build -t crupidocker/node .
     - docker images crupidocker/node
+before_deploy:
+  - docker login -u crupidocker -p lennon6969
+deploy:
+  provider: script
+  script: docker push crupidocker/node
+  on:
+     branch: master
