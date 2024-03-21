@@ -4,9 +4,11 @@ import config from './data';
 
 const app = express();
 const PORT = 4000;
-const client = mongodb.MongoClient;
-
-client.connect(config.DB, { useNewUrlParser: true }, (err, db) => { 
+const { MongoClient } = require("mongodb");
+// Replace the uri string with your connection string.
+const uri = "mongodb://localhost:27017/mydb";
+const client = new MongoClient(uri);
+client.connect(config.DB, { useUnifiedTopology: true  }, (err, db) => { 
     if(err) {
         console.log('database is not connected')
     }
